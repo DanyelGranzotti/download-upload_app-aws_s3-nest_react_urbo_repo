@@ -1,0 +1,40 @@
+services:
+  localstack:
+    image: localstack/localstack:latest
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - AWS_DEFAULT_REGION=us-east-1
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "${PWD}/.localstack:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+#   frontend:
+#     build:
+#       context: .
+#       dockerfile: ./apps/frontend/Dockerfile
+#     ports:
+#       - "5173:5173"
+#     volumes:
+#       - ./apps/frontend:/app/apps/frontend
+#       - ./packages:/app/packages
+#     environment:
+#       - VITE_API_URL=http://backend:3000
+#     depends_on:
+#       - backend
+
+#   backend:
+#     build:
+#       context: .
+#       dockerfile: ./apps/backend/Dockerfile
+#     ports:
+#       - "3000:3000"
+#     volumes:
+#       - ./apps/backend:/app/apps/backend
+#       - ./packages:/app/packages
+#     environment:
+#       - NODE_ENV=development
+#       - PORT=3000 
