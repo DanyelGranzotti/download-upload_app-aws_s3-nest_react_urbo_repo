@@ -9,6 +9,8 @@ services:
       - DATA_DIR=/tmp/localstack/data
       - AWS_DEFAULT_REGION=us-east-1
       - DOCKER_HOST=unix:///var/run/docker.sock
+      - AWS_ACCESS_KEY_ID=dummy
+      - AWS_SECRET_ACCESS_KEY=dummy
     volumes:
       - "${PWD}/.localstack:/var/lib/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
